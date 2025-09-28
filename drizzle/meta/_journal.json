@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1759030812774,
+      "tag": "0000_sloppy_chronomancer",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+# Environment Variables - External Dependencies & Secrets Only
+# This file is used by `wrangler dev` and should not be committed to version control
+
+
+# Environment identifier
+NODE_ENV=development
+
+# Authentication secrets (Better Auth)
+BETTER_AUTH_SECRET=dev-secret-key-32-chars-for-local-development-only-12345
+BETTER_AUTH_URL=http://localhost:5173
+
+# OAuth Provider Credentials (optional for development)
+# GITHUB_CLIENT_ID=your-github-client-id
+# GITHUB_CLIENT_SECRET=your-github-client-secret
+# GOOGLE_CLIENT_ID=your-google-client-id
+# GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# External API Keys & Secrets
+API_KEY=dev-api-key-for-local-testing
+WEBHOOK_SECRET=dev-webhook-secret-16-chars
+
+# Email Service Configuration (SMTP credentials)
+# SMTP_HOST=smtp.mailtrap.io
+# SMTP_PORT=587
+# SMTP_USER=your-smtp-user
+# SMTP_PASS=your-smtp-password
+
+# Database connection (if using external database)
+# DATABASE_URL=postgresql://user:pass@localhost:5432/devdb
+
+# Cloudflare D1 Database Configuration
+CLOUDFLARE_ACCOUNT_ID=cloudflare-account-id
+CLOUDFLARE_DATABASE_ID=cloudflare-database-id
+CLOUDFLARE_D1_TOKEN=cloudflare-d1-token
+
+# External service URLs
+# REDIS_URL=redis://localhost:6379
+# SENTRY_DSN=https://your-sentry-dsn

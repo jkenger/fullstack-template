@@ -1,0 +1,22 @@
+# Dependencies
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+node_modules/
+
+# Build outputs
+dist/
+.vite/
+.wrangler/
+
+# Generated files
+worker-configuration.d.ts
+src/routeTree.gen.ts
+*.d.ts
+
+# Coverage reports
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
