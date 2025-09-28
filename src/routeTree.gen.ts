@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as StackRouteImport } from './routes/stack'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as DocsRouteImport } from './routes/docs'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -30,11 +29,6 @@ const SettingsRoute = SettingsRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DocsRoute = DocsRouteImport.update({
-  id: '/docs',
-  path: '/docs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -57,7 +51,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/docs': typeof DocsRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/stack': typeof StackRoute
@@ -66,7 +59,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/docs': typeof DocsRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/stack': typeof StackRoute
@@ -76,29 +68,20 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/docs': typeof DocsRoute
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/stack': typeof StackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/auth'
-    | '/docs'
-    | '/profile'
-    | '/settings'
-    | '/stack'
+  fullPaths: '/' | '/about' | '/auth' | '/profile' | '/settings' | '/stack'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/auth' | '/docs' | '/profile' | '/settings' | '/stack'
+  to: '/' | '/about' | '/auth' | '/profile' | '/settings' | '/stack'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/auth'
-    | '/docs'
     | '/profile'
     | '/settings'
     | '/stack'
@@ -108,7 +91,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
-  DocsRoute: typeof DocsRoute
   ProfileRoute: typeof ProfileRoute
   SettingsRoute: typeof SettingsRoute
   StackRoute: typeof StackRoute
@@ -135,13 +117,6 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/docs': {
-      id: '/docs'
-      path: '/docs'
-      fullPath: '/docs'
-      preLoaderRoute: typeof DocsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -172,7 +147,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
-  DocsRoute: DocsRoute,
   ProfileRoute: ProfileRoute,
   SettingsRoute: SettingsRoute,
   StackRoute: StackRoute,

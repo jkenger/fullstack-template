@@ -11,7 +11,6 @@ import {
   createHealthRoutes,
   createBetterAuthRoutes,
 } from './routes/index'
-import { createOpenAPIRoutes } from './routes/openapi'
 import { authMiddleware } from './middleware/auth'
 import { createContainer } from './container/registry'
 import type { Environment } from './config'
@@ -37,12 +36,19 @@ export function createServer(env: Environment) {
     .use('/api/users/*', authMiddleware(container))
     .route('/api/users', createUserRoutes(container)) // User management
 
-    // Documentation routes
-    .route('/api/v1', createOpenAPIRoutes(container)) // OpenAPI docs
-
     // Error handling (must be last)
     .onError(errorHandler)
     .notFound(notFoundHandler)
+
+  // Log the simplified API structure
+  console.log('🚀 RPC-only API Routes:')
+  console.log('  💚 Health:     /api/health, /api/test')
+  console.log('  🔐 Auth:       /api/auth/* (Better Auth)')
+  console.log('  👤 Users:      /api/users/* (Protected)')
+  console.log('')
+  console.log(
+    '✅ Clean RPC-only architecture - maximum type safety, minimal overhead!'
+  )
 
   return app
 }

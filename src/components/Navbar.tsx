@@ -9,16 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import {
-  Zap,
-  User,
-  Code,
-  ExternalLink,
-  Menu,
-  X,
-  LogOut,
-  Settings,
-} from 'lucide-react'
+import { Zap, User, Code, Menu, X, LogOut, Settings } from 'lucide-react'
 import { useAuth, useAuthMutations } from '@/hooks/useAuth'
 
 export function Navbar() {
@@ -33,18 +24,10 @@ export function Navbar() {
     setIsOpen(false)
   }
 
-  // Only show API docs in development or staging
-  const isDev = import.meta.env.DEV
-  const isStaging = import.meta.env.VITE_ENVIRONMENT === 'staging'
-  const showApiDocs = isDev || isStaging
-
   const navItems = [
     { to: '/', label: 'Home', icon: null },
     { to: '/stack', label: 'Tech Stack', icon: Code },
     { to: '/profile', label: 'Demo', icon: User },
-    ...(showApiDocs
-      ? [{ to: '/docs', label: 'API Docs', icon: ExternalLink }]
-      : []),
   ]
 
   return (

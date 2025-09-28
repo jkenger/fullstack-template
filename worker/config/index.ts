@@ -96,31 +96,6 @@ export interface AppConfig {
     rateLimitStrict: boolean
   }
 
-  // API documentation configuration (from app settings)
-  api: {
-    openapi: {
-      version: string
-      title: string
-      description: string
-      contact: {
-        name: string
-        email: string
-      }
-      license: {
-        name: string
-        url: string
-      }
-      servers: Array<{
-        url: string
-        description: string
-      }>
-      tags: Array<{
-        name: string
-        description: string
-      }>
-    }
-  }
-
   // External API keys (from env vars)
   external: {
     apiKey?: string
@@ -205,9 +180,6 @@ export function createConfig(env: Environment): AppConfig {
 
     // Security (from app settings)
     security: appSettings.security,
-
-    // API documentation (from app settings)
-    api: appSettings.api,
 
     // External API keys (from env vars)
     external: {
