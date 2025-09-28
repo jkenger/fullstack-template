@@ -7,22 +7,23 @@ import { useAuth } from './useAuth'
 export function useFreshUserData() {
   const { isAuthenticated } = useAuth()
 
-  return useQuery({
-    queryKey: ['user', 'fresh'],
-    queryFn: async () => {
-      const res = await client.api.users.me.$get()
-      console.log(res)
-      const data = await res.json()
+  return (
+    useQuery({
+      queryKey: ['user', 'fresh'],
+      queryFn: async () => {
+        const res = await client.api.users.me.$get()
+        const data = await res.json()
 
-      if (!data.success) {
-        throw new Error(data.error || 'Failed to fetch user profile')
-      }
+        if (!data.success) {
+          throw new Error(data.error || 'Failed to fetch user profile')
+        }
 
-      return data
-    },
-    enabled: isAuthenticated, // Only fetch if authenticated
-    staleTime: 5 * 60 * 1000, // Consider data stale after 5 minutes
-  })
+        return data
+      },
+      enabled: isAuthenticated, // Only fetch if authenticated
+      staleTime: 5 * 60 * 1000, // Consider data stale after 5 minutes
+    }) || 'Invalid or expired session'
+  )
 }
 
 export function useUserMutations() {

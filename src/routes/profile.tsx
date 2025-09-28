@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useFreshUserData, useUserMutations } from '../hooks/useUser'
 import { Button } from '@/components/ui/button'
@@ -17,6 +17,14 @@ import { toast } from 'sonner'
 import { ErrorTester } from '@/components/ErrorTester'
 
 export const Route = createFileRoute('/profile')({
+  beforeLoad: async ({ context, location }) => {
+    if (!context.auth?.isAuthenticated) {
+      throw redirect({
+        to: '/auth',
+        search: { redirect: location.href }, // Redirect back after login
+      })
+    }
+  },
   component: ProfilePage,
 })
 
@@ -26,7 +34,6 @@ function ProfilePage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const { data: userResponse, isLoading, error } = useFreshUserData()
   const { updateProfile } = useUserMutations()
-
   const user = userResponse?.data
 
   const handleStartEdit = () => {
